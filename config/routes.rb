@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :customers
+
+  get 'cities/:state', to: 'application#cities'
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
