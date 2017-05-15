@@ -22,7 +22,7 @@
   </thead>
 
   <tbody>
-    <% @customers.each do |customer| %>
+    <% @customers.order("created_at desc").each do |customer| %>
       <tr>
         <td><%= customer.first_name %></td>
         <td><%= customer.last_name %></td>
@@ -33,7 +33,12 @@
         <td><%= customer.email %></td>
         <td><%= customer.address %></td>
         <td><%= customer.city %></td>
-        <td><%= customer.state %></td>
+        <% CS.states(:us).each do |key, value| %>
+          <% if key.to_s == customer.state %>
+            <%= content_tag(:td, value) %>
+            <% break %>
+          <% end %>
+        <% end %>
         <td><%= customer.zip_code %></td>
         <td><%= customer.comments %></td>
         <td><%= link_to 'Show', customer %></td>

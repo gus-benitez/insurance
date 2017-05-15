@@ -47,7 +47,12 @@
 
 <p>
   <strong>State:</strong>
-  <%= @customer.state %>
+  <% CS.states(:us).each do |key, value| %>
+    <% if key.to_s == @customer.state %>
+      <%= value %>
+      <% break %>
+    <% end %>
+  <% end %>
 </p>
 
 <p>
