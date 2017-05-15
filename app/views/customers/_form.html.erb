@@ -25,7 +25,26 @@
   </div>
   <div class="field">
     <%= f.label :gender %><br>
-    <%= f.select :gender, options_for_select({"" => "","Male" => "Male","Female" => "Female","Other" => "Other"}, @customer.gender ) %>
+    <% v_log_check_male   = false
+       v_log_check_female = false
+       v_log_check_other  = false
+      if @customer.gender == "Male"
+        v_log_check_male = true
+      else 
+        if @customer.gender == "Female"
+          v_log_check_female = true
+        else
+          if @customer.gender == "Other"
+            v_log_check_other = true
+          end
+        end
+      end%>
+    <%= radio_button_tag("customer[gender]", "Male", checked = v_log_check_male) %>
+    <%= label_tag(:gender_male, "Male") %>
+    <%= radio_button_tag("customer[gender]", "Female", checked = v_log_check_female) %>
+    <%= label_tag(:gender_female, "Female") %>
+    <%= radio_button_tag("customer[gender]", "Other", checked = v_log_check_other) %>
+    <%= label_tag(:gender_other, "Other") %>
   </div>
   <div class="field">
     <%= f.label :mobile_phone %><br>
