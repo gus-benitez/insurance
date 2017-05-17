@@ -1,4 +1,5 @@
-<%= form_for(@customer) do |f| %>
+<%= form_for @customer, html: {name: "contact_form", id: "contact_form", class: "well form-horizontal"} do |f| %>
+
   <% if @customer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
@@ -11,115 +12,203 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :birthday %><br>
-    <%= f.date_select :birthday, :default => Time.local(Time.now.year - 14,'Jan',1), :start_year => Time.now.year - 100 %>
-  </div>
-  <div class="field">
-    <%= f.label :gender %><br>
-    <% v_log_check_male   = false
-       v_log_check_female = false
-       v_log_check_other  = false
-      if @customer.gender == "Male"
-        v_log_check_male = true
-      else 
-        if @customer.gender == "Female"
-          v_log_check_female = true
-        else
-          if @customer.gender == "Other"
-            v_log_check_other = true
-          end
-        end
-      end%>
-    <%= radio_button_tag("customer[gender]", "Male", checked = v_log_check_male) %>
-    <%= label_tag(:gender_male, "Male") %>
-    <%= radio_button_tag("customer[gender]", "Female", checked = v_log_check_female) %>
-    <%= label_tag(:gender_female, "Female") %>
-    <%= radio_button_tag("customer[gender]", "Other", checked = v_log_check_other) %>
-    <%= label_tag(:gender_other, "Other") %>
-  </div>
-  <div class="field">
-    <%= f.label :mobile_phone %><br>
-    <%= f.text_field :mobile_phone %>
-  </div>
-  <div class="field">
-    <%= f.label :other_phone %><br>
-    <%= f.text_field :other_phone, placeholder: "office, beeper, etc." %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, placeholder: "email@domain.com" %>
-  </div>  
-  <div class="field">
-    <%= f.label :state %><br>
-    <select name="customer[state]" id="states_of_country" >
-      <%= content_tag(:option, "Select Your State" , value: " " ) %>
-      <% CS.states(:us).each do |key, value| %>
-        <% if key.to_s == @customer.state %>
-          <%= content_tag(:option, value , value: key , selected: true ) %>
-        <% else %>
-          <%= content_tag(:option, value , value: key ) %>
-        <% end %>
-      <% end %>
-    </select>
-  </div>  
-  <div class="field">
-    <%= f.label :city %><br>
-    <% if @customer.state.blank? %>
-      <select name="customer[city]" id="cities_of_state" ">
-        <option value="" >Select Your City</option>
-      </select>
-    <%else%>
-      <select name="customer[city]" id="cities_of_state" >
-        <%= content_tag(:option, "Select Your City" , value: " " ) %>
-        <% CS.cities(@customer.state, :us).each do |key, value| %>
-          <% if key.to_s == @customer.city %>
-            <%= content_tag(:option, key.to_s, value: key.to_s , selected: true ) %>
-          <% else %>
-            <%= content_tag(:option, key.to_s , value: key.to_s ) %>
-          <% end %>
-        <% end %>
-      </select>
-    <%end%>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :zip_code %><br>
-    <%= f.text_field :zip_code, placeholder: "99999" %>
-  </div>
-  <div class="field">
-    <%= f.label :comments %><br>
-    <%= f.text_area :comments %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <fieldset>
+    <!-- Form Name -->
+    <div class="form-group">
+      <label class="col-md-4 control-label">First Name</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+        </div>
+      </div>
+    </div><!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Last Name</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+        </div>
+      </div>
+    </div><!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">E-Mail</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <%= f.email_field :email, class: "form-control", placeholder: "email@domain.com" %>
+        </div>
+      </div>
+    </div><!-- Text input-->
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">Mobile phone #</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+          <%= f.text_field :mobile_phone, class: "form-control", placeholder: "(845)555-1212" %>
+        </div>
+      </div>
+    </div><!-- Text input-->
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">Other Phone #</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+          <%= f.text_field :other_phone, class: "form-control", placeholder: "office, beeper, etc." %>
+        </div>
+      </div>
+    </div><!-- Text input-->
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">State</label>
+      <div class="col-md-4 selectContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+          <select name="customer[state]" id="states_of_country" class="form-control">
+            <%= content_tag(:option, "Select Your State" , value: " " ) %>
+            <% CS.states(:us).each do |key, value| %>
+              <% if key.to_s == @customer.state %>
+                <%= content_tag(:option, value , value: key , selected: true ) %>
+              <% else %>
+                <%= content_tag(:option, value , value: key ) %>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div><!-- Text input-->
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">City</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+          <% if @customer.state.blank? %>
+            <select name="customer[city]" id="cities_of_state" class="form-control">
+              <option value="" >Select Your City</option>
+            </select>
+          <%else%>
+            <select name="customer[city]" id="cities_of_state" class="form-control">
+              <%= content_tag(:option, "Select Your City" , value: " " ) %>
+              <% CS.cities(@customer.state, :us).each do |key, value| %>
+                <% if key.to_s == @customer.city %>
+                  <%= content_tag(:option, key.to_s, value: key.to_s , selected: true ) %>
+                <% else %>
+                  <%= content_tag(:option, key.to_s , value: key.to_s ) %>
+                <% end %>
+              <% end %>
+            </select>
+          <%end%>
+        </div>
+      </div>
+    </div><!-- Select Basic -->
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">Address</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+          <%= f.text_field :address, class: "form-control", placeholder: "Address" %>
+        </div>
+      </div>
+    </div><!-- Text input-->
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">Zip Code</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+          <%= f.text_field :zip_code, class: "form-control", placeholder: "99999" %>
+        </div>
+      </div>
+    </div><!-- Text input-->
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">Gender</label>
+      <div class="col-md-4">
+        <% v_log_check_male   = false
+           v_log_check_female = false
+           v_log_check_other  = false
+          if @customer.gender == "Male"
+            v_log_check_male = true
+          else
+            if @customer.gender == "Female"
+              v_log_check_female = true
+            else
+              if @customer.gender == "Other"
+                v_log_check_other = true
+              end
+            end
+          end%>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag("customer[gender]", "Male", checked = v_log_check_male) %> Male
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag("customer[gender]", "Female", checked = v_log_check_female) %> Female
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag("customer[gender]", "Other", checked = v_log_check_other) %> Other
+          </label>
+        </div>
+      </div>
+    </div><!-- Text area -->
+
+    <%#= f.hidden_field :birthday, value: "1982-09-01" %>
+
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">Birthday</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+          <%= f.date_select :birthday,{start_year: Date.today.year - 120, end_year: Date.today.year - 17 }, class: "form-control" %>
+        </div>
+      </div>
+    </div><!-- Success message -->
+
+
+    <div class="form-group">
+      <label class="col-md-4 control-label">Comments</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+          <%= f.text_area :comments, class: "form-control", placeholder: "Project Description" %>
+        </div>
+      </div>
+    </div><!-- Success message -->
+    <div class="alert alert-success" id="success_message" role="alert">
+      Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.
+    </div><!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label"></label>
+      <div class="col-md-4">
+        <button class="btn btn-warning" type="submit">Send <span class="glyphicon glyphicon-send"></span></button>
+      </div>
+    </div>
+  </fieldset>
 <% end %>
 
 <script>
   $("#states_of_country").change(function () {
     var input_state = $(this);
-    var input_cities_of_state = $("#cities_of_state");    
+    var input_cities_of_state = $("#cities_of_state");
     $.getJSON('/cities/' + input_state.val(), function (data) {
       var opt = '<option value="" selected="">Select Your City</option>';
       //console.log(data);
       if(data.length > 0){
         data.forEach(function(i) {
-          opt += "<option value=" + i + ">" + i + '</option>';          
-        });        
+          opt += "<option value=" + i + ">" + i + '</option>';
+        });
       }
       input_cities_of_state.html(opt);
-    });    
+    });
   });
 </script>
