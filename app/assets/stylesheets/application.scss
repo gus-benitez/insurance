@@ -12,6 +12,39 @@
  *
  */
 
+// Color vars
+$white: #fff;
+$grey: #ccc;
+$dark_grey: #555;
+$blue: #4f6fad;
+$pink: #ee9cb4;
+
+
+.row {
+  &.header {
+    padding: 1.5em 2.5em;
+    border-bottom: 1px solid $grey; 
+    background: url(http://niiiick.com/files/blur-city-1.jpg) left -80px;
+    color: $white;
+  }
+  &.body {
+    padding: .5em 2.5em 1em;
+  }
+}
+form{
+  margin: auto;
+  label{
+    color: $blue;
+  }
+}
+textarea{
+  max-height: 250px;
+}
+.btn{
+  background-color: $blue !important;
+  width: 200px !important;
+}
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
