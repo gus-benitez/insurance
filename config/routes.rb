@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'customers#new'
 
+  namespace :admin do
+    get :main, to: "main_admin#main"
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
