@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'customers#new'
+  root 'register/customers#new'
 
-  namespace :admin do
-    get :main, to: "main_admin#main"
+  namespace :register do
+    resources :customers, except: [:destroy, :index]
   end
 
   # Example of regular route:

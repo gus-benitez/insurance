@@ -2,7 +2,7 @@
   <h1>CONTACT US &nbsp;</h1>
   <h3>Fill out the form below to learn more!</h3>
 </div>
-<%= form_for @customer, html: {name: "contact_form", id: "contact_form", class: "well form-horizontal"} do |f| %>
+<%= form_for [:register, @customer], html: {name: "contact_form", id: "contact_form", class: "well form-horizontal"} do |f| %>
 
   <%= render(:partial => "partials/form_main", :locals => {:f => f}) %>
 

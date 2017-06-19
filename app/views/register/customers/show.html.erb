@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @customer.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @customer.last_name %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>
+  <%= @customer.birthday %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @customer.gender %>
+</p>
+
+<p>
+  <strong>Mobile phone:</strong>
+  <%= @customer.mobile_phone %>
+</p>
+
+<p>
+  <strong>Other phone:</strong>
+  <%= @customer.other_phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @customer.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @customer.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <% CS.states(:us).each do |key, value| %>
+    <% if key.to_s == @customer.state %>
+      <%= value %>
+      <% break %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @customer.zip_code %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @customer.comments %>
+</p>
+
+<%= link_to 'Edit', edit_register_customer_path(@customer) %>
