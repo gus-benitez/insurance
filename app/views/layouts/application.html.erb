@@ -8,7 +8,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if user_signed_in? %>          
+	<li>
+	  <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+	</li>
+	<%else%>
+	<li>
+	  <%= link_to "Iniciar Sesión", new_user_session_path %>
+	</li>
+	<li>
+	  <%= link_to "Crear Sesión", new_user_registration_path %>
+	</li>
+  <%end%>
+
   <div class="container">
+    <div style="<%= "display: none;" if notice.nil? %>">
+	  <%= notice %>
+	</div>
+	<div style="<%= "display: none;" if alert.nil? %>">
+	  <%= alert %>
+	</div>
     <%= yield %>
   </div>
 </body>
