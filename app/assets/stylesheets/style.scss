@@ -1,8 +1,9 @@
 // Color vars
 $white: #fff;
-$grey: #ccc;
+$grey: #E9E8E8;
 $dark_grey: #555;
-$blue: #4f6fad;
+$celeste: #21c2f8;
+$celeste_claro: #E9F6FA;
 $pink: #ee9cb4;
 $red: #d9534f;
 
@@ -41,17 +42,6 @@ $red: #d9534f;
   }
 }
 
-.row {
-  &.header {
-    padding: 1.5em 2.5em;
-    border-bottom: 1px solid $grey; 
-    background: url(http://niiiick.com/files/blur-city-1.jpg) left -80px;
-    color: $white;
-  }
-  &.body {
-    padding: .5em 2.5em 1em;
-  }
-}
 form{
   margin: auto;
   .radio_label{
@@ -61,18 +51,91 @@ form{
     padding: 0px 0px 0px 25px;
   }
   label{
-    color: $blue;
+    color: $celeste;
   }
+}
+.form-control {
+  padding: 2px 25px !important;
+}
+.input-group-addon {
+  padding: 2px 25px !important;
+}
+.control-label {
+  padding: 14px 14px !important;
+}
+.radio_label {
+  padding: 14px 11px 14px 11px !important;
 }
 textarea{
   max-height: 250px;
 }
 .btn{
-  background-color: $blue !important;
+  color: $white !important;
+  background-color: $celeste !important;
   width: 200px !important;
 }
+.form-customized {
+  height: 40px !important;
+  padding: 7px 7px !important;  
+}
+.form-textarea-customized {
+  height: 120px !important;
+  padding: 7px 7px !important;  
+}
+.form-group-customized {
+  margin-bottom: 5px !important;
+  height: auto;
+  color: $celeste; 
+}
 
-@import "bootstrap-sprockets";
+/*@import "bootstrap-sprockets";*/
 @import "bootstrap";
 
 #success_message{ display: none;}
+
+.table-customized > tbody > tr:nth-of-type(odd) {
+  background-color: $grey;
+}
+.table-customized > tbody > tr:hover {
+  background-color: $celeste;
+}
+.table-customized > thead {
+  /*border-bottom: solid 5px $celeste;*/
+  background: linear-gradient($celeste, $celeste_claro);
+  /*background: radial-gradient($celeste, $celeste_claro);*/
+}
+
+.btn-table {
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.btn-sm, .btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.2rem;
+}
+.px-2 {
+  padding-right: 0.5rem !important;
+  padding-left: 0.5rem !important;
+}
+.table-wrapper {
+  display: block;
+  max-height: 300px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}

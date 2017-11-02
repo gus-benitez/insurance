@@ -1,69 +1,173 @@
-<p id="notice"><%= notice %></p>
+<fieldset class="form-horizontal">
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">First Name</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.first_name %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Last Name</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.last_name %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Email</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.email %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Birthday:</strong>
-  <%= @customer.birthday %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Mobile phone</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.mobile_phone %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Gender:</strong>
-  <%= @customer.gender %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Other phone</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.other_phone %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Mobile phone:</strong>
-  <%= @customer.mobile_phone %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">State</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+        <div class="form-customized form-control" readonly>
+          <% CS.states(:us).each do |key, value| %>
+            <% if key.to_s == @customer.state %>
+              <%= value %>
+              <% break %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Other phone:</strong>
-  <%= @customer.other_phone %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">City</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.city %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Address</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.address %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Address:</strong>
-  <%= @customer.address %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Zip code</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.zip_code %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>City:</strong>
-  <%= @customer.city %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Gender</label>
+    <div class="col-md-4">
+      <% v_log_check_male   = false
+         v_log_check_female = false
+         v_log_check_other  = false
+        if @customer.gender == "Male"
+          v_log_check_male = true
+        else
+          if @customer.gender == "Female"
+            v_log_check_female = true
+          else
+            if @customer.gender == "Other"
+              v_log_check_other = true
+            else
+              v_log_check_male = true
+            end
+          end
+        end%>
+      <div class="form-control" readonly>
+        <label class="radio_label">
+          <%= radio_button_tag("customer[gender]", "Male", checked = v_log_check_male, disabled: true) %> Male
+        </label>
+        <label class="radio_label">
+          <%= radio_button_tag("customer[gender]", "Female", checked = v_log_check_female, disabled: true) %> Female
+        </label>
+        <label class="radio_label">
+          <%= radio_button_tag("customer[gender]", "Other", checked = v_log_check_other, disabled: true) %> Other
+        </label>
+      </div>
+    </div>
+  </div><!-- Text area -->
 
-<p>
-  <strong>State:</strong>
-  <% CS.states(:us).each do |key, value| %>
-    <% if key.to_s == @customer.state %>
-      <%= value %>
-      <% break %>
-    <% end %>
-  <% end %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Birthday</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        <div class="form-customized form-control" readonly>
+          <%= @customer.birthday %>
+        </div>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Zip code:</strong>
-  <%= @customer.zip_code %>
-</p>
+  <div class="form-group-customized form-group">
+    <label class="col-md-4 form-customized control-label">Comments</label>
+    <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+          <textarea class="form-textarea-customized form-control" rows="4" readonly><%= @customer.comments %></textarea>
+      </div>
+    </div>
+  </div><!-- Text input-->
 
-<p>
-  <strong>Comments:</strong>
-  <%= @customer.comments %>
-</p>
+</fieldset>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

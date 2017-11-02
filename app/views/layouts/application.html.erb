@@ -2,33 +2,138 @@
 <html>
 <head>
   <title>CustomerRegistration</title>
-  <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track' => true %>
+  
+  <!-- Add jQuery library -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>  
   <%= csrf_meta_tags %>
+  <link rel="icon" href= <%= image_path("favicon.ico")%> type="image/x-icon">
 </head>
 <body>
-  <% if user_signed_in? %>          
-	<li>
-	  <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
-	</li>
-	<%else%>
-	<li>
-	  <%= link_to "Iniciar Sesión", new_user_session_path %>
-	</li>
-	<li>
-	  <%= link_to "Crear Sesión", new_user_registration_path %>
-	</li>
-  <%end%>
 
-  <div class="container">
-    <div style="<%= "display: none;" if notice.nil? %>">
-	  <%= notice %>
+  <div class="page">
+  <!--========================================================
+                            HEADER
+  =========================================================-->
+    <header>  
+      <div class="container top-sect">
+        <div class="navbar-header">
+          <h1 class="navbar-brand">
+            <a data-type='rd-navbar-brand'  href="./">business<small>company</small></a>
+          </h1>
+          <a class="search-form_toggle" href="#"></a>
+        </div>
+
+        <div class="help-box text-right">
+          <p>Need help?</p>
+          <a href="callto:#">800-2345-6789</a>
+          <small><span>Hours:</span>  6am-4pm PST M-Th; &nbsp;6am-3pm PST Fri</small>
+        </div>
+			</div>
+                  
+      <div id="stuck_container" class="stuck_container">
+        <div class="container">
+          <nav class="navbar navbar-default navbar-static-top pull-left">
+            <div class="">  
+              <ul class="nav navbar-nav sf-menu" data-type="navbar">
+                <li>
+                  <%= link_to "HOME", home_index_path %>
+                </li>
+                <li>
+                  <%= link_to "ABOUT", about_index_path %>
+                </li>
+                <li class="dropdown">
+                  <%= link_to services_index_path do %>
+                    SERVICES<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                  <% end %>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="#">Lorem ipsum</a>
+                    </li>
+                    <li>
+                      <a href="#">Dolor sit amet  </a>
+                    </li>
+                    <li>
+                      <a href="#">Conse ctetur </a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="#">Latest</a>
+                          </li>
+                          <li>
+                            <a href="#">Archive</a>
+                          </li>
+                        </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <%= link_to "PROJECTS", project_index_path %>
+                </li>                
+                <li>
+                  <%= link_to "CONTACTS", new_customer_path %>
+                </li>
+                <li>
+                  <%= link_to "CUSTOMERS", customers_path %>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+		</header>
+<!--
+		<% if user_signed_in? %>
+			<li>
+				<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+			</li>
+		<%else%>
+			<li>
+				<%= link_to "Iniciar Sesión", new_user_session_path %>
+			</li>
+			<li>
+				<%= link_to "Crear Sesión", new_user_registration_path %>
+			</li>
+		<%end%>
+-->
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <% flash.each do |type, msg| %>
+          <% if type == "notice" %>
+            <div class="alert alert-success">
+          <% elsif type == "alert" %>
+            <div class="alert alert-danger">
+          <% else %>
+            <div class='alert alert-<%= "#{type}" %>'>
+          <% end %>
+            <a href="#" class="close" data-dismiss="alert">&#215;</a>
+            <ul>
+              <li>
+                <%= msg %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+		<div class="container">
+
+      <%= yield %>
+
+		</div>
+
+    <script>
+      $(document).ready(function () {
+          RDMobilemenu_autoinit('[data-type="navbar"]');
+      });
+    </script>
 	</div>
-	<div style="<%= "display: none;" if alert.nil? %>">
-	  <%= alert %>
-	</div>
-    <%= yield %>
-  </div>
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- Include all compiled plugins (below), or include individual files as needed-->
+    <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/tm-scripts.js"></script>
+  
+
 </body>
 </html>

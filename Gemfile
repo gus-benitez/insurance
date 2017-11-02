@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "city-state"
 gem "devise"
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'fancybox-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -49,4 +51,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'bootstrap-sass', '~> 3.3.6'
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end

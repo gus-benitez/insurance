@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'services/index'
+
+  get 'project/index'
+
+  get 'about/index'
+
+  get 'home/index'
+
   devise_for :users
   resources :customers
 
@@ -8,7 +16,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'register/customers#new'
+  root 'home#index'
 
   namespace :register do
     resources :customers, except: [:destroy, :index]
