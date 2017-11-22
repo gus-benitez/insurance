@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
+  
   get 'services/index'
-
   get 'project/index'
-
   get 'about/index'
-
   get 'home/index'
+  get 'newcustomerok/index'
 
   devise_for :users
   resources :customers
-
+  
   get 'cities/:state', to: 'application#cities'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,10 +16,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-
-  namespace :register do
-    resources :customers, except: [:destroy, :index]
-  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

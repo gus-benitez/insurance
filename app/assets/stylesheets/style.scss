@@ -16,7 +16,7 @@ $red: #d9534f;
 
 #error_explanation {
   width: 450px;
-  border: 2px solid $red;
+  border: 3px solid $red;
   border-radius: 5px;
   padding: 7px;
   padding-bottom: 0;
@@ -36,9 +36,8 @@ $red: #d9534f;
   }
 
   ul li {
-    padding: 4px 0px 0px 0px;
+    padding: 4px px 0px 0px;
     font-size: 12px;
-    list-style: square;
   }
 }
 
@@ -73,6 +72,11 @@ textarea{
   color: $white !important;
   background-color: $celeste !important;
   width: 200px !important;
+  padding: 15px 25px !important;
+}
+.btn_long{
+  width: 300px !important;
+  font-size: 20px !important;
 }
 .form-customized {
   height: 40px !important;
@@ -104,6 +108,11 @@ textarea{
   background: linear-gradient($celeste, $celeste_claro);
   /*background: radial-gradient($celeste, $celeste_claro);*/
 }
+.log-customized {
+  padding: 19px 12px 11px 12px !important;
+  font-size: 20px;
+  color: $celeste !important;
+}
 
 .btn-table {
   display: inline-block;
@@ -132,6 +141,9 @@ textarea{
 .px-2 {
   padding-right: 0.5rem !important;
   padding-left: 0.5rem !important;
+}
+.link_bottom {
+  padding-bottom: 0.5rem !important;
 }
 .table-wrapper {
   display: block;

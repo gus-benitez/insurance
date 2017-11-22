@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new, :create, :show]
 
   # GET /customers
   # GET /customers.json
@@ -11,6 +11,9 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    if not user_signed_in?
+      redirect_to newcustomerok_index_url
+    end
   end
 
   # GET /customers/new

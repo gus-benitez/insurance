@@ -1,4 +1,7 @@
 
 <%= render 'form' %>
-
-<%= link_to 'Back', customers_path %>
+<% if user_signed_in? %>
+  <h4>
+    <%= link_to 'Customers', customers_path %>
+  </h4>
+<%end%>

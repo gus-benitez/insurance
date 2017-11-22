@@ -72,8 +72,17 @@
                 <li>
                   <%= link_to "CONTACTS", new_customer_path %>
                 </li>
+                <% if user_signed_in? %>
+                  <li>
+                    <%= link_to "CUSTOMERS", customers_path %>
+                  </li>
+                <% end %>
                 <li>
-                  <%= link_to "CUSTOMERS", customers_path %>
+                  <% if user_signed_in? %>                    
+                    <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: "log-customized" %>
+                  <%else%>
+                    <%= link_to "LOG IN", new_user_session_path, class: "log-customized" %>
+                  <%end%>
                 </li>
               </ul>
             </div>
@@ -81,20 +90,7 @@
         </div>
       </div>
 		</header>
-<!--
-		<% if user_signed_in? %>
-			<li>
-				<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
-			</li>
-		<%else%>
-			<li>
-				<%= link_to "Iniciar Sesión", new_user_session_path %>
-			</li>
-			<li>
-				<%= link_to "Crear Sesión", new_user_registration_path %>
-			</li>
-		<%end%>
--->
+
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1">
         <% flash.each do |type, msg| %>
