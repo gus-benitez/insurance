@@ -74,6 +74,12 @@ textarea{
   width: 200px !important;
   padding: 15px 25px !important;
 }
+.btn-default {
+  width: 100px !important;
+  padding: 15px 20px !important;
+  font-size: 19px !important;
+  margin: 2px !important;
+}
 .btn_long{
   width: 300px !important;
   font-size: 20px !important;
@@ -92,7 +98,7 @@ textarea{
   color: $celeste; 
 }
 
-/*@import "bootstrap-sprockets";*/
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 #success_message{ display: none;}
@@ -125,13 +131,14 @@ textarea{
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  border: 1px solid transparent;
-  padding: 0.5rem 1rem;
+  //border: 1px solid transparent;
+  padding: 0.5rem 0.5rem;
   font-size: 1rem;
   border-radius: 0.25rem;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  -webkit-appearance: button;
 }
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;

@@ -115,21 +115,50 @@
 		<div class="container">
 
       <%= yield %>
-
-		</div>
-
-    <script>
-      $(document).ready(function () {
-          RDMobilemenu_autoinit('[data-type="navbar"]');
-      });
-    </script>
+      
+		</div>    
 	</div>
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <!-- Include all compiled plugins (below), or include individual files as needed-->
-    <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assets/tm-scripts.js"></script>
+  <script type="text/javascript" src="/assets/bootstrap.js"></script>
+  <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/assets/tm-scripts.js"></script>
   
+  <script> 
+    $(document).ready(function () {
+        RDMobilemenu_autoinit('[data-type="navbar"]');
+    });
+
+    function actionFormatter(value, row, index) {
+    return [
+      '<a class="like" href="javascript:void(0)" title="Like">',
+      '<i class="glyphicon glyphicon-heart"></i>',
+      '</a>',
+      '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+      '<i class="glyphicon glyphicon-edit"></i>',
+      '</a>',
+      '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+      '<i class="glyphicon glyphicon-remove"></i>',
+      '</a>'
+    ].join('');
+    }
+
+    window.actionEvents = {
+    'click .like': function (e, value, row, index) {
+      alert('You click like icon, row: ' + JSON.stringify(row));
+      console.log(value, row, index);
+    },
+    'click .edit': function (e, value, row, index) {
+      alert('You click edit icon, row: ' + JSON.stringify(row));
+      console.log(value, row, index);
+    },
+    'click .remove': function (e, value, row, index) {
+      alert('You click remove icon, row: ' + JSON.stringify(row));
+      console.log(value, row, index);
+    }
+    };
+  </script>
 
 </body>
 </html>
