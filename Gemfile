@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
-
+ruby "2.3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.10'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'pg'
+# Use Puma as the app server
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,12 +30,12 @@ gem "city-state"
 gem "devise"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'fancybox-rails'
+gem 'zip-zip'
+gem 'axlsx', '~> 2.0'
+gem 'axlsx_rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

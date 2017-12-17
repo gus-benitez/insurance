@@ -1,0 +1,16 @@
+wb = xlsx_package.workbook
+wb.styles do |style|
+  format_first_cell = style.add_style(bg_color: "6ae8e1",
+                                         border: Axlsx::STYLE_THIN_BORDER,
+                                         alignment: { horizontal: :center })
+	wb.add_worksheet(name: "Customers") do |sheet|
+		sheet.add_row ["ID", "First Name", "Last Name", "Birthday",
+			"Gender", "Mobile Phone", "Other Phone", "Email",
+			"Address", "City", "State", "Zip Code", "Comments"], :style => format_first_cell
+		@customers.each do |customer|
+			sheet.add_row [customer.id, customer.first_name, customer.last_name, customer.birthday,
+				customer.gender , customer.mobile_phone , customer.other_phone , customer.email,
+				customer.address , customer.city , customer.state , customer.zip_code , customer.comments ]
+		end
+	end
+end

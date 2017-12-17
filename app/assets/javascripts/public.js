@@ -280,7 +280,7 @@ Grid.defaults = {
         iconUp: "glyphicon-chevron-up",
         infos: "infos", // must be a unique class name or constellation of class names within the header and footer,
         left: "text-left",
-        pagination: "pagination", // must be a unique class name or constellation of class names within the header and footer
+        pagination: "pagination pagination-lg pager", // must be a unique class name or constellation of class names within the header and footer
         paginationButton: "button", // must be a unique class name or constellation of class names within the pagination
 
         /**
