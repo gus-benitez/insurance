@@ -33,6 +33,7 @@ gem 'fancybox-rails'
 gem 'zip-zip'
 gem 'axlsx', '~> 2.0'
 gem 'axlsx_rails'
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
